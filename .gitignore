@@ -1,0 +1,45 @@
+# Kubeconfigs and cluster credentials — never commit
+kubeconfig
+*kubeconfig*
+*.kubeconfig
+.kube/
+
+# Talos / cluster bootstrap secrets
+talosconfig
+secrets.yaml
+controlplane.yaml
+worker.yaml
+
+# Decrypted SOPS output — commit only the encrypted form
+*.dec.yaml
+*.dec.yml
+*.decrypted.*
+
+# Keys and certs
+*.pem
+*.key
+*.crt
+*.p12
+age.agekey
+*.agekey
+
+# Helm
+charts/
+*.tgz
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+
+# Editor / OS
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Claude Code local settings
+.claude/settings.local.json
+.claude/*.tmp.*
