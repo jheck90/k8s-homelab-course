@@ -215,7 +215,20 @@ Your professional wheelhouse. This is where you can reach L3 fastest and where t
 Roughly 24 weeks. The hour splits about 40 minutes hands-on, 20 minutes reading — reverse that ratio and you'll retain far less.
 
 ### Phase 1 — Foundations (weeks 1–6)
-Domain 6 (L1–L2) and Domain 1 (L1–L2). Build a cluster by hand, then rebuild on Talos/k3s. Learn the object model properly before you migrate anything. Nothing moves off Nomad yet.
+Domain 6 (L1–L2) and Domain 1 (L1–L2), **interleaved rather than sequential**. Build a cluster by hand, then rebuild on Talos/k3s. Learn the object model properly before you migrate anything. Nothing moves off Nomad yet.
+
+The interleaving is the point. Don't finish the hand-built control plane and *then* start on the object model — bring the components up one at a time and learn what each one does by watching what's broken before it exists:
+
+| Running | Domain 6 lesson | Domain 1 lesson |
+|---|---|---|
+| etcd + apiserver | The API server is a REST front end over a key-value store, nothing more | Create a Deployment. **Nothing happens.** No ReplicaSet, no Pod. Objects are just declared state; the API server never acts on them |
+| \+ controller-manager | Which controllers ship in-tree, and that they're one binary by packaging convenience, not design | The ownership chain materializes on its own: Deployment → ReplicaSet → Pod. Watch `ownerReferences` get written. Pods are Pending forever |
+| \+ scheduler | Scheduling is a separate, replaceable process — not a privileged core function | A binding is just a field write. `nodeName` gets set; that's the entire act of scheduling |
+| \+ kubelet | The node agent is the thing that actually runs containers, and it *pulls* its work | Reconciliation is level-triggered: kill a pod's container by hand and watch kubelet restore it without anyone sending an event |
+
+This sequence teaches reconciliation by subtraction, and it is only available on a hand-built cluster — k3s and Talos exist precisely to make these components invisible. Do it here or you don't get to do it at all.
+
+Then throw the cluster away and rebuild on Talos or k3s. The hand-built one is a teaching instrument, not infrastructure; running the homelab on it is a trap.
 
 ### Phase 2 — Migration (weeks 7–14)
 Domain 8, then 3, then 2 and 4. Stand K8s up *alongside* Nomad and move one service at a time, starting with the one nobody in the house will miss. Get GitOps in place early so every subsequent migration is cheap. Plex moves last.
