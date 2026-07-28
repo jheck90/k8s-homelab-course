@@ -1,11 +1,22 @@
 # rubric/
 
-`k8s-sre-rubric.md` is the standard. Everything else here is a dated self-assessment against it.
+`k8s-sre-rubric.md` is the standard. `SCORECARD-TEMPLATE.md` is the shape of an assessment
+against it. Both are shareable — clone this repo and they apply to you unchanged.
 
-Naming: `YYYY-MM-DD-scorecard.md`, from `SCORECARD-TEMPLATE.md`.
+Completed scorecards go in [`my-scores/`](my-scores/), which is gitignored. Naming:
+`YYYY-MM-DD-scorecard.md`.
 
-Cadence: every 4 weeks, committed. Regression on domains you stopped touching is expected
-and is information.
+**The first one is day one, before any work.** Mostly L0, and it will feel like a formality —
+but every later score is a delta against it, and a program with no zero point can't show
+movement. It's also the only scorecard with nothing to defend, which makes it the most honest
+one you'll write.
+
+Cadence: every 4 weeks, dated, never skipped. Regression on domains you stopped touching is
+expected and is information.
+
+Since these aren't committed, git history no longer enforces the dating for you — a scorecard
+can be quietly backdated or rewritten. Write them on the day, in one sitting, and don't revise
+an old one after the fact.
 
 ## The evidence rule
 

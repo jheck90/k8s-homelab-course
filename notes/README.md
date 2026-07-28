@@ -21,5 +21,9 @@ Notes worth keeping have one of these shapes:
   belongs in `migrations/` instead.
 - **A command that revealed something** you couldn't see another way.
 
+The first notes come from Week 1, in `01-api-object-model/` — see the stage table in
+[`../clusters/README.md`](../clusters/README.md). Stages 2 and 5 are model corrections, and
+model corrections are the notes worth having.
+
 Notes that just restate the upstream docs are not worth writing — link the docs instead. The
 reason to write is that you had to *derive* something.
