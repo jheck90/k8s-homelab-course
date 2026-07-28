@@ -6,13 +6,9 @@ Context and working agreement for this repository.
 
 ## Who I'm working with
 
-Senior infrastructure engineer, individual contributor. Background in DevSecOps and automation, with a security and compliance-heavy day job. Working toward platform/SRE depth.
+**Read [`LEARNER.md`](LEARNER.md) before the first substantive response in a session.** It holds the prior-orchestrator experience, the time budget, and the strong/weak domains — the calibration everything below depends on. The current learner is an expert in two other orchestrators (Nomad and ECS) learning a third, not a beginner learning orchestration. That distinction drives every choice in the voice contract.
 
-**Existing depth:** Nomad and ECS. Extensive production experience with both. Homelab currently runs entirely on Nomad. Also comfortable with NixOS, Terraform/IaC, self-hosted GitLab.
-
-**The gap this repo closes:** Kubernetes. Strong orchestration fundamentals, thin K8s specifics.
-
-This distinction matters enormously for how to help him. He is not a beginner learning orchestration. He is an expert in two other orchestrators learning a third. Treat him accordingly.
+The rest of this file is the working agreement and applies to anyone running this program.
 
 ---
 
@@ -78,7 +74,7 @@ Order: mental model → why it's built that way → then, if needed, the mechani
 
 ### 4. Compare to Nomad and ECS constantly
 
-This is his highest-bandwidth channel. Anchor every new concept to something he already runs in production.
+This is the highest-bandwidth channel. Anchor every new concept to something he already runs in production — the prior orchestrators are named in [`LEARNER.md`](LEARNER.md); for the current learner they're Nomad and ECS.
 
 - "A Deployment is roughly a Nomad job with `count`, except the reconciliation lives in a controller rather than the scheduler."
 - "This is ECS service discovery, but the registration is push-from-kubelet instead of pull-from-agent."
@@ -157,7 +153,7 @@ Highest-value work in this section. Use the official **`skill-creator`** skill (
 
 1. **`nomad-to-k8s`** — the translation layer, built incrementally as `/migrations/` fills up. Each entry: the Nomad or ECS construct, the K8s equivalent, and **where the analogy breaks**. This is the single most useful artifact in the whole program, and no off-the-shelf skill can contain it because it's specific to his mental models.
 2. **`hint-ladder`** — the escalation rules from the voice contract, as an enforceable skill rather than prose an agent may drift from.
-3. **`rubric-score`** — loads `rubric/k8s-sre-rubric.md`, interrogates claimed levels against the evidence rule (L3 needs an artifact plus an unaided verbal defense; L2 needs a deliberately caused failure that he fixed), writes a dated scorecard. Prevents self-assessment inflation, which is the main way this program fails quietly.
+3. **`rubric-score`** — loads `rubric/k8s-sre-rubric.md`, interrogates claimed levels against the evidence rule (L3 needs an artifact plus an unaided verbal defense; L2 needs a deliberately caused failure that he fixed), writes a dated scorecard to `rubric/my-scores/`. Prevents self-assessment inflation, which is the main way this program fails quietly.
 
 Project-scoped skills live in `.claude/skills/` and get committed. Personal ones go in `~/.claude/skills/`.
 
@@ -191,6 +187,6 @@ A community skill is arbitrary instructions your agent will follow — prompt in
 
 ## Progress tracking
 
-Re-score the rubric every 4 weeks, dated, committed. Regression on untouched domains is expected and is information, not failure.
+Re-score the rubric every 4 weeks, dated, written to `rubric/my-scores/` — gitignored, because the curriculum is shareable and the self-assessment isn't. Regression on untouched domains is expected and is information, not failure.
 
 L3 is not self-assessable. It requires a produced artifact **and** the ability to explain the tradeoff aloud without notes. L2 requires he fixed the failure after causing it deliberately.

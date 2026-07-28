@@ -40,6 +40,13 @@ charts/
 .idea/
 .vscode/
 
+# Personal scorecards — the curriculum is shareable, the self-assessment isn't
+rubric/my-scores/*
+!rubric/my-scores/README.md
+
+# Local hardware inventory — commit the example, not your node addresses
+clusters/MY-SETUP.md
+
 # Claude Code local settings
 .claude/settings.local.json
 .claude/*.tmp.*
